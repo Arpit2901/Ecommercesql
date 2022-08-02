@@ -56,5 +56,5 @@ as select pname, pid, price
 from product as p
 inner join accounts as a
 on p.pid=a.aid
-select * from view1
+
 

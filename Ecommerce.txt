@@ -1,0 +1,60 @@
+create table product(pid numeric(6) primary key,pname nvarchar(20), price numeric(10,2))
+
+insert into product values(1235,'phone',20000)
+insert into product values(1236,'speaker',9000)
+insert into product values(1237,'motor',3500)
+insert into product values(1238,'toy',600)
+insert into product values(1239,'fridge',35000)
+insert into product values(1240,'books',10000)
+insert into product values(1241,'table',1500)
+insert into product values(1242,'chair',1200)
+
+select * from product
+
+create table customer(id int primary key identity(1,1) ,name nvarchar(20),address nvarchar(20), purchaseid numeric(6))
+insert into customer values('mohit','GZB',1234)
+insert into customer values('Arpit','GZB',1234)
+insert into customer values('romil','bombay',1238)
+insert into customer values('yash','pune',1237)
+insert into customer values('hasrshit','goa',1234)
+insert into customer values('abhay','MBD',1235)
+insert into customer values('vansh','MBD',1236)
+insert into customer values('naina','mbd',1234)
+
+select * from customer
+
+create table ordered(id numeric(5) primary key identity(6543,1) , price numeric(10,2))
+drop table ordered
+
+insert into ordered values(35000)
+insert into ordered values(25000)
+insert into ordered values(3500)
+insert into ordered values(600)
+insert into ordered values(1200)
+insert into ordered values(20000)
+insert into ordered values(9000)
+insert into ordered values(35000)
+
+select * from ordered
+
+create table Accounts(pid numeric(5) , price numeric(10,2),method nvarchar(10))
+
+insert into Accounts values(1239,35000,'cod')
+insert into Accounts values(1234,25000,'card')
+insert into Accounts values(1237,3500,'card')
+insert into Accounts values(1238,600,'cod')
+insert into Accounts values(1242,1200,'upi')
+insert into Accounts values(1235,20000,'upi')
+insert into Accounts values(1236,9000,'upi')
+insert into Accounts values(1239,35000,'cod')
+
+select * from Accounts
+
+
+create view purchase
+as select pname, pid, price
+from product as p
+inner join accounts as a
+on p.pid=a.aid
+select * from view1
+

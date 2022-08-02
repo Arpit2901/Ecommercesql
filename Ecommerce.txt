@@ -1,4 +1,6 @@
 create table product(pid numeric(6) primary key,pname nvarchar(20), price numeric(10,2))
+exec sp_rename 'product.pid','prid','column'
+exec sp_rename 'product.price','cost','column'
 
 insert into product values(1235,'phone',20000)
 insert into product values(1236,'speaker',9000)
@@ -24,7 +26,6 @@ insert into customer values('naina','mbd',1234)
 select * from customer
 
 create table ordered(id numeric(5) primary key identity(6543,1) , price numeric(10,2))
-drop table ordered
 
 insert into ordered values(35000)
 insert into ordered values(25000)
@@ -36,6 +37,7 @@ insert into ordered values(9000)
 insert into ordered values(35000)
 
 select * from ordered
+drop table ordered
 
 create table Accounts(pid numeric(5) , price numeric(10,2),method nvarchar(10))
 
@@ -52,9 +54,23 @@ select * from Accounts
 
 
 create view purchase
-as select pname, pid, price
+as select pname, prid
 from product as p
 inner join accounts as a
-on p.pid=a.aid
+on p.prid=a.pid
 
+select * from purchase
 
+create view view2
+as select pname, prid ,method, price
+from product as p,accounts as a
+where p.cost=a.price
+
+select * from view2
+
+create view view3
+as select pname, prid ,name,address
+from product as p,customer as c
+where p.prid=c.purchaseid
+
+select * from view3

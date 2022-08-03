@@ -1,0 +1,23 @@
+delete from product where pname='lcd'
+insert into product values(1233,'lcd',19000)
+--union operation
+select pname from product where prid>1235
+Union 
+select name from customer where purchaseid>1235
+--intersect operation
+select prid from product
+intersect 
+select purchaseid from customer 
+
+
+
+select * from product where cost between 1500 and 20000
+select * from product where cost not between 1500 and 20000
+select  * from product where  cost in (600,3500,20000)
+--like query
+select *from customer where name like 'a%'
+select *from product where pname like '%o%'
+select * from customer where name like '[AY]%'
+
+--exists query
+select *from product where exists(select * from ordered where ordered.price=product.cost)
